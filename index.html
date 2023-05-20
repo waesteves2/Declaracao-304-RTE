@@ -6,329 +6,345 @@
 
 
 <link rel="shortcut icon"
-    href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
+  href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 <script>
 
 
-    const nomeInput = document.getElementById("remetente");
-    const enderecoInput = document.getElementById("endereco");
-    const cidadeInput = document.getElementById("volumes");
-    const bairroInput = document.getElementById("cidade");
-    const nomeResultado = document.getElementById("remetente-resultado");
-    const enderecoResultado = document.getElementById("endereco-resultado");
-    const cidadeResultado = document.getElementById("volumes-resultado");
-    const bairroResultado = document.getElementById("cidade-resultado");
+  const nomeInput = document.getElementById("remetente");
+  const enderecoInput = document.getElementById("endereco");
+  const cidadeInput = document.getElementById("volumes");
+  const bairroInput = document.getElementById("cidade");
+  const nomeResultado = document.getElementById("remetente-resultado");
+  const enderecoResultado = document.getElementById("endereco-resultado");
+  const cidadeResultado = document.getElementById("volumes-resultado");
+  const bairroResultado = document.getElementById("cidade-resultado");
 
-    nomeInput.addEventListener("input", function () {
-        nomeResultado.innerHTML = this.value;
-    });
-    enderecoInput.addEventListener("input", function () {
-        enderecoResultado.innerHTML = this.value;
-    });
-    cidadeInput.addEventListener("input", function () {
-        cidadeResultado.innerHTML = this.value;
-    });
+  nomeInput.addEventListener("input", function () {
+    nomeResultado.innerHTML = this.value;
+  });
+  enderecoInput.addEventListener("input", function () {
+    enderecoResultado.innerHTML = this.value;
+  });
+  cidadeInput.addEventListener("input", function () {
+    cidadeResultado.innerHTML = this.value;
+  });
 
 </script>
 
 <div etiqueta>
-    <style>
-        form {
+  <style>
+    form {
 
-            border-radius: 2px;
-            border-color: blue;
-            text-align: center;
-        }
+      border-radius: 2px;
+      border-color: blue;
+      text-align: center;
+    }
 
-        .nome {
+    .nome {
 
-            width: 200px;
+      width: 200px;
 
-            display: inline-flex;
-            margin: 5px;
-
-
-
-        }
-
-        .end {
-
-            width: 250px;
-
-            display: inline-flex;
-            margin: 5px;
-
-        }
-
-        #cpf {
-
-            width: 120px;
-        }
-
-        #Bairro {
-
-            width: 120px;
-        }
-
-        .cid {
-
-            width: 100px;
-            margin: 5px;
-        }
-
-        .tel {
-
-            width: 100px;
-            margin: 5px;
-        }
-
-        p {
-
-            text-align: center;
-        }
-
-        head {
-
-            text-align: center;
-        }
-
-        html {
-
-            border: solid;
-            border-color: rgb(51, 51, 97);
-            border-radius: 5px;
-            margin: auto;
-
-        }
-
-        h1,
-        h2 {
-
-            text-align: center;
-        }
-
-        .gerar {
-
-            background-color: rgb(52, 192, 235);
-            width: 130px;
-            margin-left: 600px;
-            border-radius: 5px;
-            font-size: 13px;
-            text-align: center;
-            padding: 10px;
-            margin-top: -50px;
-        }
+      display: inline-flex;
+      margin: 5px;
 
 
-        .qr {
 
-            text-align: center;
+    }
 
-            margin-left: 30px;
+    .end {
 
-            position: center;
+      width: 280px;
 
-        }
+      display: inline-flex;
+      margin: 5px;
 
-        button {
+    }
 
-            margin-left: auto;
-            background-color: blue;
-            color: white;
-            margin-top: 70px;
+    #cpf {
 
-        }
-
-        #cep {
-
-            width: 100px;
-        }
-    </style>
+      width: 120px;
 
 
-    <head lang="PT-br" style="text-align: justify;">
+    }
 
-        <script>
-            function formatCPF() {
-                var inputCPF = document.getElementById("input").innerHTML;
-                var formattedCPF = inputCPF.substring(0, 3) + "." + inputCPF.substring(3, 6) + "." + inputCPF.substring(6, 9) + "-" + inputCPF.substring(9, 11);
-                document.getElementById("formatted").innerHTML = formattedCPF;
-            }
-        </script>
+    #Bairro {
 
-        <title>DECLARAÇÃO RTE</title>
-        <img src="data:image/png;base64,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"
-            alt="" width="400">
+      width: 120px;
+
+    }
+
+    .cid {
+
+      width: 100px;
+      margin: 5px;
+
+    }
+
+    .tel {
+
+      width: 100px;
+      margin: 5px;
+
+    }
+
+    p {
+
+      text-align: center;
+    }
+
+    head {
+
+      text-align: center;
+
+    }
+
+    html {
+
+      border: solid;
+      border-color: rgb(51, 51, 97);
+      border-radius: 5px;
+      margin: auto;
+
+    }
+
+    h1,
+    h2 {
+
+      text-align: center;
+    }
+
+    .gerar {
+
+      background-color: rgb(52, 192, 235);
+      width: 130px;
+      margin-left: 600px;
+      border-radius: 5px;
+      font-size: 13px;
+      text-align: center;
+      padding: 10px;
+      margin-top: -50px;
+    }
 
 
-        <meta charset="UTF-8">
+    .qr {
 
-        <P><b>Declaração de Natureza e Valor de Conteúdo<br>
-                (para transportes de encomendas não comerciáveis)</b></P>
+      text-align: center;
 
-        Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo relacionados, por mim
-        entregues
-        como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal. Neles não são
-        conduzidas nem correspondências a constituir monopólio postal da União, nem mercadorias destinadas a
-        comercializações, sujeitas a tributos municipais, estaduais ou federais, nem drogas, objetos ou produtos
-        perigosos
-        relacionados na NORMA BRASILEIRA NBR-7502, cujo teor é do meu conhecimento, ou outros que oferecem risco à saúde
-        ou
-        à segurança das pessoas que no veículo são transportadas, ou mesmo de terceiros que sejam obrigados a
-        manipula-los.
-        Responsabilizo-me, integralmente, por quaisquer ônus ou prejuízos que de seu transporte possam decorrer,
-        inclusive
-        em caso de apreensão e aplicação de multas. Declaro, ainda, isenta a RODONAVES, do ressarcimento, que possa
-        ocorrer
-        da mercadoria por não estar embalada adequadamente.
+      margin-left: 30px;
+
+      position: center;
+
+    }
+
+    button {
+
+      margin-left: auto;
+      background-color: blue;
+      color: white;
+      margin-top: 70px;
+
+    }
+
+    #cep {
+
+      width: 100px;
+
+    }
+
+    input {
+
+      border: 2px solid;
+
+    }
+  </style>
 
 
-    </head>
+  <head lang="PT-br" style="text-align: justify;">
+
+    <script>
+      function formatCPF() {
+        var inputCPF = document.getElementById("input").innerHTML;
+        var formattedCPF = inputCPF.substring(0, 3) + "." + inputCPF.substring(3, 6) + "." + inputCPF.substring(6, 9) + "-" + inputCPF.substring(9, 11);
+        document.getElementById("formatted").innerHTML = formattedCPF;
+      }
+    </script>
+
+    <title>DECLARAÇÃO RTE</title>
+    <img
+      src="data:image/png;base64,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"
+      alt="" width="400">
+
+
+    <meta charset="UTF-8">
+
+    <P><b>Declaração de Natureza e Valor de Conteúdo<br>
+        (para transportes de encomendas não comerciáveis)</b></P>
+
+    Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo relacionados, por mim
+    entregues
+    como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal. Neles não são
+    conduzidas nem correspondências a constituir monopólio postal da União, nem mercadorias destinadas a
+    comercializações, sujeitas a tributos municipais, estaduais ou federais, nem drogas, objetos ou produtos
+    perigosos
+    relacionados na NORMA BRASILEIRA NBR-7502, cujo teor é do meu conhecimento, ou outros que oferecem risco à saúde
+    ou
+    à segurança das pessoas que no veículo são transportadas, ou mesmo de terceiros que sejam obrigados a
+    manipula-los.
+    Responsabilizo-me, integralmente, por quaisquer ônus ou prejuízos que de seu transporte possam decorrer,
+    inclusive
+    em caso de apreensão e aplicação de multas. Declaro, ainda, isenta a RODONAVES, do ressarcimento, que possa
+    ocorrer
+    da mercadoria por não estar embalada adequadamente.
+
+
+  </head>
+  <hr>
+
+  <body style="font-family: monospace;">
+
+    <h1>INFORMAÇÕES DA DECLARAÇÃO</h1>
+
+    <form>
+      <input style="text-align: center; width: 15%;" type="Vol" name="VOLUMES" value="VOLUMES" readonly id="volumes">
+      <input style="text-align: center; width: 15%;" type="PesoKG" name="PESO" value="PESO Kg" readonly>
+      <input style="text-align: center; width: 15%;" type="Valor" name="VALOR" value="VALOR R$" readonly>
+      <input style="text-align: center; width: 15%;" type="Descrição" name="DISCRIMINAÇÃO" value="DISCRIMINAÇÃO"
+        readonly>
+      <input style="text-align: center; width: 15%;" type="CUBAGEM" name="CUBAGEM" value="MEDIDAS VOL" readonly>
+      <br>
+      <input style="text-align: center; width: 15%;" type="number">
+      <input style="text-align: center; width: 15%;" type="number">
+      <input style="text-align: center; width: 15%;" type="number">
+      <input style="text-align: center; width: 15%;" type="text" onkeyup="this.value = this.value.toUpperCase();">
+      <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
+        style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
+        style="text-align: center; width: 4%;" type="text" placeholder="C">
+
+      <br>
+      <input style="text-align: center; width: 15%;" type="number">
+      <input style="text-align: center; width: 15%;" type="number">
+      <input style="text-align: center; width: 15%;" type="number">
+      <input style="text-align: center; width: 15%;" type="text" onkeyup="this.value = this.value.toUpperCase();">
+      <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
+        style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
+        style="text-align: center; width: 4%;" type="text" placeholder="C">
+
+
+      <br>
+    </form>
+
+    <br>
+
+    <div style="font-family: monospace;">
+
+      <h2>REMETENTE</h2>
+
+      Nome: <input type="text" id="campoOrigem" required class="nome"
+        onkeyup="this.value = this.value.toUpperCase(this);">
+      <label for="cpf" class="cpf">CPF:</label>
+      <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
+      <br>
+      Ende:<input type="text" class="end" id="endereco" onkeyup="this.value = this.value.toUpperCase();">Bairro: <input
+        type="text" id="bairro" onkeyup="this.value = this.value.toUpperCase();"><br>
+      Cidade:<input type="text" class="cid" id="cidade" onkeyup="this.value = this.value.toUpperCase();">CEP: <input
+        type="text" id="cep" onblur="searchAddressByCEP();"><br>
+      Tel:<input type="tel" class="tel"><br>
+
+
+
+      <br>
+      <br>
+      <h2>DESTINATÁRIO</h2>
+
+      Nome: <input type="text" required class="nome" onkeyup="this.value = this.value.toUpperCase();">
+      <label for="cpf" class="cpf">CPF:</label>
+      <input type="text" id="cpfDestinatario" onkeyup="formatCPF('cpfDestinatario');">
+      <br>
+      Ende:<input type="text" class="end" id="endereco" onkeyup="this.value = this.value.toUpperCase();">Bairro: <input
+        type="text" id="bairro" onkeyup="this.value = this.value.toUpperCase();"><br>
+      Cidade:<input type="text" class="cid" id="cidade" onkeyup="this.value = this.value.toUpperCase();">CEP: <input
+        type="text" id="cep" onblur="searchAddressByCEP();"><br>
+      Tel:<input type="tel" class="tel"><br>
+    </div>
+    <br>
     <hr>
+    <label for="data">Data:</label>
+    <input type="text" id="data" readonly>
+    <br>
+    <label for="hora">Hora:</label>
+    <input type="text" id="hora" readonly>
 
-    <body style="font-family: monospace;">
-
-        <h1>INFORMAÇÕES DA DECLARAÇÃO</h1>
-
-        <form>
-            <input style="text-align: center; width: 15%;" type="Vol" name="VOLUMES" value="VOLUMES" readonly
-                id="volumes">
-            <input style="text-align: center; width: 15%;" type="PesoKG" name="PESO" value="PESO Kg" readonly>
-            <input style="text-align: center; width: 15%;" type="Valor" name="VALOR" value="VALOR R$" readonly>
-            <input style="text-align: center; width: 15%;" type="Descrição" name="DISCRIMINAÇÃO" value="DISCRIMINAÇÃO"
-                readonly>
-            <input style="text-align: center; width: 15%;" type="CUBAGEM" name="CUBAGEM" value="MEDIDAS VOL" readonly>
-            <br>
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="text">
-            <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
-                style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
-                style="text-align: center; width: 4%;" type="text" placeholder="C">
-
-            <br>
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="text">
-            <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
-                style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
-                style="text-align: center; width: 4%;" type="text" placeholder="C">
+    <script>
+      var data = document.getElementById("data");
+      var hora = document.getElementById("hora");
+      var dataAtual = new Date();
+      data.value = dataAtual.toLocaleDateString();
+      hora.value = dataAtual.toLocaleTimeString();
+    </script>
+    <br>
+    <h3>PAGADOR DE FRETE REMETENTE</h3>
 
 
-            <br>
-        </form>
+    <div class="qr">
 
-        <br>
+      <div class="qrcode">
+        <h4>CHAVE PIX</h4>
+        <h3>44.914.992/0001-38</h3>
 
-        <div style="font-family: monospace;">
-
-            <h2>REMETENTE</h2>
-
-            Nome: <input type="text" id="campoOrigem" class="nome" onkeyup="this.value = this.value.toUpperCase();">
-            <label for="cpf" class="cpf">CPF:</label>
-            <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
-            <br>
-            Ende:<input type="text" class="end" id="endereco">Bairro: <input type="text" id="bairro"><br>
-            Cidade:<input type="text" class="cid" id="cidade">CEP: <input type="text" id="cep"
-                onblur="searchAddressByCEP();"><br>
-            Tel:<input type="tel" class="tel"><br>
-
-
-
-            <br>
-            <br>
-            <h2>DESTINATÁRIO</h2>
-
-            Nome: <input type="text" class="nome" onkeyup="this.value = this.value.toUpperCase();">
-            <label for="cpf" class="cpf">CPF:</label>
-            <input type="text" id="cpfDestinatario" onkeyup="formatCPF('cpfDestinatario');">
-            <br>
-            Ende:<input type="text" class="end" id="endereco">Bairro: <input type="text" id="bairro"><br>
-            Cidade:<input type="text" class="cid" id="cidade">CEP: <input type="text" id="cep"
-                onblur="searchAddressByCEP();"><br>
-            Tel:<input type="tel" class="tel"><br>
-        </div>
-        <br>
-        <hr>
-        <label for="data">Data:</label>
-        <input type="text" id="data" readonly>
-        <br>
-        <label for="hora">Hora:</label>
-        <input type="text" id="hora" readonly>
-
-        <script>
-            var data = document.getElementById("data");
-            var hora = document.getElementById("hora");
-            var dataAtual = new Date();
-            data.value = dataAtual.toLocaleDateString();
-            hora.value = dataAtual.toLocaleTimeString();
-        </script>
-        <br>
-        <h3>PAGADOR DE FRETE REMETENTE</h3>
-
-
-        <div class="qr">
-
-            <div class="qrcode">
-                <h4>CHAVE PIX</h4>
-                <h3>44.914.992/0001-38</h3>
-
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
         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"
-                    width="80" height="80" alt="">
-            </div>
+          width="80" height="80" alt="">
+      </div>
 
 
-            <div class="gerar">
+      <div class="gerar">
 
-                <a href="https://waesteves2.github.io/ETIQUETA/"> Gerar Etiqueta</a>
+        <a href="https://waesteves2.github.io/ETIQUETA/"> Gerar Etiqueta</a>
 
-            </div>
-
-
-        </div>
-
-    </body>
-    <button onclick="window.print()">Imprimir Declaração</button>
-
-    <script>
-        // Referência ao campo de origem
-        var origem = document.getElementById("campoOrigem");
-
-        // Referência ao campo de destino
-        var destino = document.getElementById("campoDestino");
-
-        // Evento de "oninput" para o campo de origem
-        origem.oninput = function () {
-            // Atribui o valor do campo de origem ao campo de destino
-            destino.value = origem.value;
-        }
-
-        // Armazena os dados no Local Storage
-        localStorage.setItem('remetente', document.querySelector('.remetente').value);
-        localStorage.setItem('destinatario', document.querySelector('.destinatario').value);
-        localStorage.setItem('endereco', document.querySelector('.end').value);
-        localStorage.setItem('cidade', document.querySelector('.cid').value);
-
-    </script>
-    <script>
-        function formatCPF(id) {
-            var inputCPF = document.getElementById(id).value;
-            if (inputCPF.length >= 11) {
-                inputCPF = inputCPF.substring(0, 3) + "." + inputCPF.substring(3, 6) + "." + inputCPF.substring(6, 9) + "-" + inputCPF.substring(9, 11);
-                document.getElementById(id).value = inputCPF;
-            }
-        }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      </div>
 
 
+    </div>
+
+  </body>
+  <button onclick="window.print()">Imprimir Declaração</button>
+
+  <script>
+    var origem = document.getElementById("campoOrigem");
+
+    var destino = document.getElementById("campoDestino");
+
+    origem.oninput = function () {
+      destino.value = origem.value;
+    }
+
+    localStorage.setItem('remetente', document.querySelector('.remetente').value);
+    localStorage.setItem('destinatario', document.querySelector('.destinatario').value);
+    localStorage.setItem('endereco', document.querySelector('.end').value);
+    localStorage.setItem('cidade', document.querySelector('.cid').value);
+
+  </script>
+  <script>
+    function formatCPF(id) {
+      var inputCPF = document.getElementById(id).value;
+      if (inputCPF.length >= 11) {
+        inputCPF = inputCPF.substring(0, 3) + "." + inputCPF.substring(3, 6) + "." + inputCPF.substring(6, 9) + "-" + inputCPF.substring(9, 11);
+        document.getElementById(id).value = inputCPF;
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    function toUpperCase(element) {
+      element.value = element.value.toUpperCase();
+    }
+  </script>
 
 
 
