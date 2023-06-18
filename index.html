@@ -9,31 +9,6 @@
   href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<script>
-
-
-  const nomeInput = document.getElementById("remetente");
-  const enderecoInput = document.getElementById("endereco");
-  const cidadeInput = document.getElementById("volumes");
-  const bairroInput = document.getElementById("cidade");
-  const nomeResultado = document.getElementById("remetente-resultado");
-  const enderecoResultado = document.getElementById("endereco-resultado");
-  const cidadeResultado = document.getElementById("volumes-resultado");
-  const bairroResultado = document.getElementById("cidade-resultado");
-
-  nomeInput.addEventListener("input", function () {
-    nomeResultado.innerHTML = this.value;
-  });
-  enderecoInput.addEventListener("input", function () {
-    enderecoResultado.innerHTML = this.value;
-  });
-  cidadeInput.addEventListener("input", function () {
-    cidadeResultado.innerHTML = this.value;
-  });
-
-</script>
-
 <div etiqueta>
   <style>
     form {
@@ -80,6 +55,8 @@
 
       width: 100px;
       margin: 5px;
+      margin-left: -8px;
+
 
     }
 
@@ -148,15 +125,24 @@
 
     }
 
-    #cep {
+    #cepRemetente {
 
       width: 100px;
+      margin-left: 12px;
+
+    }
+
+    #cepDestinatario{
+
+      width: 100px;
+      margin-left: 12px;
 
     }
 
     input {
 
       border: 2px solid;
+      border-radius: 4px;
 
     }
   </style>
@@ -239,36 +225,34 @@
     <br>
 
     <div style="font-family: monospace;">
-
       <h2>REMETENTE</h2>
-
+    
       Nome: <input type="text" id="campoOrigem" required class="nome"
-        onkeyup="this.value = this.value.toUpperCase(this);">
+        onkeyup="this.value = this.value.toUpperCase();">
       <label for="cpf" class="cpf">CPF:</label>
       <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
       <br>
-      Ende:<input type="text" class="end" id="endereco" onkeyup="this.value = this.value.toUpperCase();">Bairro: <input
-        type="text" id="bairro" onkeyup="this.value = this.value.toUpperCase();"><br>
-      Cidade:<input type="text" class="cid" id="cidade" onkeyup="this.value = this.value.toUpperCase();">CEP: <input
-        type="text" id="cep" onblur="searchAddressByCEP();"><br>
-      Tel:<input type="tel" class="tel"><br>
-
-
-
+      CEP: <input type="text" id="cepRemetente" onblur="searchAddressByCEP('cepRemetente', 'enderecoRemetente', 'bairroRemetente', 'cidadeRemetente');"><br>
+      Ende: <input type="text" class="end" id="enderecoRemetente" onkeyup="this.value = this.value.toUpperCase();">
+      Bairro: <input type="text" id="bairroRemetente" onkeyup="this.value = this.value.toUpperCase();"><br>
+      Cidade: <input type="text" class="cid" id="cidadeRemetente" onkeyup="this.value = this.value.toUpperCase();">
+      Tel: <input type="tel" class="tel"><br>
+    
       <br>
       <br>
       <h2>DESTINATÁRIO</h2>
-
+    
       Nome: <input type="text" required class="nome" onkeyup="this.value = this.value.toUpperCase();">
       <label for="cpf" class="cpf">CPF:</label>
       <input type="text" id="cpfDestinatario" onkeyup="formatCPF('cpfDestinatario');">
       <br>
-      Ende:<input type="text" class="end" id="endereco" onkeyup="this.value = this.value.toUpperCase();">Bairro: <input
-        type="text" id="bairro" onkeyup="this.value = this.value.toUpperCase();"><br>
-      Cidade:<input type="text" class="cid" id="cidade" onkeyup="this.value = this.value.toUpperCase();">CEP: <input
-        type="text" id="cep" onblur="searchAddressByCEP();"><br>
-      Tel:<input type="tel" class="tel"><br>
+      CEP: <input type="text" id="cepDestinatario" onblur="searchAddressByCEP('cepDestinatario', 'enderecoDestinatario', 'bairroDestinatario', 'cidadeDestinatario');"><br>
+      Ende: <input type="text" class="end" id="enderecoDestinatario" onkeyup="this.value = this.value.toUpperCase();">
+      Bairro: <input type="text" id="bairroDestinatario" onkeyup="this.value = this.value.toUpperCase();"><br>
+      Cidade: <input type="text" class="cid" id="cidadeDestinatario" onkeyup="this.value = this.value.toUpperCase();">
+      Tel: <input type="tel" class="tel"><br>
     </div>
+    
     <br>
     <hr>
     <label for="data">Data:</label>
@@ -284,6 +268,32 @@
       data.value = dataAtual.toLocaleDateString();
       hora.value = dataAtual.toLocaleTimeString();
     </script>
+
+<script>
+  function searchAddressByCEP(cepId, enderecoId, bairroId, cidadeId) {
+    var cep = document.getElementById(cepId).value.replace(/\D/g, '');
+    var url = 'https://viacep.com.br/ws/' + cep + '/json/';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+
+        if (response.hasOwnProperty('erro')) {
+          // CEP não encontrado
+          alert('CEP não encontrado.');
+        } else {
+          // Preenche os campos do endereço
+          document.getElementById(enderecoId).value = response.logradouro;
+          document.getElementById(bairroId).value = response.bairro;
+          document.getElementById(cidadeId).value = response.localidade;
+        }
+      }
+    };
+    xhr.send();
+  }
+</script>
     <br>
     <h3>PAGADOR DE FRETE REMETENTE</h3>
 
@@ -312,7 +322,8 @@
     </div>
 
   </body>
-  <button onclick="window.print()">Imprimir Declaração</button>
+  <br>
+  <button type="button" onclick="validarCampos()">Imprimir</button>
 
   <script>
     var origem = document.getElementById("campoOrigem");
@@ -345,6 +356,17 @@
       element.value = element.value.toUpperCase();
     }
   </script>
+
+
+<script>
+function validarCampos() {
+  // Lógica para imprimir aqui
+  window.print();
+}
+</script>
+
+
+  
 
 
 
