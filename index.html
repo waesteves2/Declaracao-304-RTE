@@ -17,6 +17,12 @@
       border-color: blue;
       text-align: center;
     }
+    .info{
+
+        border-radius: 2px;
+      border-color: blue;
+      text-align: left;
+    }
 
     .nome {
 
@@ -223,35 +229,37 @@
     </form>
 
     <br>
-
-    <div style="font-family: monospace;">
-      <h2>REMETENTE</h2>
+        <div style="font-family: monospace;">
     
-      Nome: <input type="text" id="campoOrigem" required class="nome"
-        onkeyup="this.value = this.value.toUpperCase();">
-      <label for="cpf" class="cpf">CPF:</label>
-      <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
-      <br>
-      CEP: <input type="text" id="cepRemetente" onblur="searchAddressByCEP('cepRemetente', 'enderecoRemetente', 'bairroRemetente', 'cidadeRemetente');"><br>
-      Ende: <input type="text" class="end" id="enderecoRemetente" onkeyup="this.value = this.value.toUpperCase();">
-      Bairro: <input type="text" id="bairroRemetente" onkeyup="this.value = this.value.toUpperCase();"><br>
-      Cidade: <input type="text" class="cid" id="cidadeRemetente" onkeyup="this.value = this.value.toUpperCase();">
-      Tel: <input type="tel" class="tel"><br>
+      <form class="info">
+        <h2>REMETENTE</h2>
+        Nome: <input type="text" id="campoOrigem" required class="nome" required onkeyup="this.value = this.value.toUpperCase();">
+        <label for="cpf" class="cpf">CPF:</label>
+        <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
+        <br>
+        CEP: <input type="text" id="cepRemetente" onblur="searchAddressByCEP('cepRemetente', 'enderecoRemetente', 'bairroRemetente', 'cidadeRemetente');"><br>
+        Ende: <input type="text" class="end" id="enderecoRemetente" onkeyup="this.value = this.value.toUpperCase();">
+        Bairro: <input type="text" id="bairroRemetente" onkeyup="this.value = this.value.toUpperCase();"><br>
+        Cidade: <input type="text" class="cid" id="cidadeRemetente" onkeyup="this.value = this.value.toUpperCase();">
+        Tel: <input type="tel" class="tel"><br>
     
-      <br>
-      <br>
-      <h2>DESTINATÁRIO</h2>
+        <br>
+        <br>
+        <h2>DESTINATÁRIO</h2>
     
-      Nome: <input type="text" required class="nome" onkeyup="this.value = this.value.toUpperCase();">
-      <label for="cpf" class="cpf">CPF:</label>
-      <input type="text" id="cpfDestinatario" onkeyup="formatCPF('cpfDestinatario');">
-      <br>
-      CEP: <input type="text" id="cepDestinatario" onblur="searchAddressByCEP('cepDestinatario', 'enderecoDestinatario', 'bairroDestinatario', 'cidadeDestinatario');"><br>
-      Ende: <input type="text" class="end" id="enderecoDestinatario" onkeyup="this.value = this.value.toUpperCase();">
-      Bairro: <input type="text" id="bairroDestinatario" onkeyup="this.value = this.value.toUpperCase();"><br>
-      Cidade: <input type="text" class="cid" id="cidadeDestinatario" onkeyup="this.value = this.value.toUpperCase();">
-      Tel: <input type="tel" class="tel"><br>
-    </div>
+        Nome: <input type="text" required class="nome" onkeyup="this.value = this.value.toUpperCase();">
+        <label for="cpf" class="cpf">CPF:</label>
+        <input type="text" id="cpfDestinatario" onkeyup="formatCPF('cpfDestinatario');">
+        <br>
+        CEP: <input type="text" id="cepDestinatario" onblur="searchAddressByCEP('cepDestinatario', 'enderecoDestinatario', 'bairroDestinatario', 'cidadeDestinatario');"><br>
+        Ende: <input type="text" class="end" id="enderecoDestinatario" onkeyup="this.value = this.value.toUpperCase();">
+        Bairro: <input type="text" id="bairroDestinatario" onkeyup="this.value = this.value.toUpperCase();"><br>
+        Cidade: <input type="text" class="cid" id="cidadeDestinatario" onkeyup="this.value = this.value.toUpperCase();">
+        Tel: <input type="tel" class="tel"><br>
+        
+        <br>
+    </form>
+     </div>
     
     <br>
     <hr>
@@ -260,6 +268,8 @@
     <br>
     <label for="hora">Hora:</label>
     <input type="text" id="hora" readonly>
+
+    
 
     <script>
       var data = document.getElementById("data");
@@ -323,7 +333,7 @@
 
   </body>
   <br>
-  <button type="button" onclick="validarCampos()">Imprimir</button>
+  <button type="button" onclick="imprimir()">Imprimir</button>
 
   <script>
     var origem = document.getElementById("campoOrigem");
@@ -360,13 +370,47 @@
 
 <script>
 function validarCampos() {
-  // Lógica para imprimir aqui
   window.print();
 }
 </script>
 
-
-  
+<script>
+    function imprimir() {
+        var camposOrigem = document.getElementsByClassName('nome');
+        var camposDestinatario = document.getElementsByClassName('nome');
+        var camposVazios = false;
+        
+        for (var i = 0; i < camposOrigem.length; i++) {
+            if (camposOrigem[i].value === '') {
+                camposVazios = true;
+                break;
+            }
+        }
+        
+        if (!camposVazios) {
+            for (var i = 0; i < camposDestinatario.length; i++) {
+                if (camposDestinatario[i].value === '') {
+                    camposVazios = true;
+                    break;
+                }
+            }
+        }
+        
+        if (camposVazios) {
+            alert('Por favor, preencha todos os campos!');
+        } else {
+            window.print();
+        }
+    }
+</script>
+<script>
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.key === 'p') {
+            event.preventDefault(); 
+            alert('Impressão bloqueada!'); 
+        }
+    });
+</script>
 
 
 
