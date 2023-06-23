@@ -27,7 +27,6 @@
 
         .nome {
 
-            width: 260px;
 
             display: inline-flex;
             margin: 5px;
@@ -38,23 +37,28 @@
 
         .end {
 
-            width: 300px;
 
             display: inline-flex;
             margin: 5px;
 
         }
 
-        #cpf {
+        #cpfRemetente {
 
-            width: 120px;
+            width: 100px;
+
+
+        }
+
+        #cpfDestinatario {
+            width: 100px;
 
 
         }
 
         #bairroRemetente {
 
-            width: 180px;
+            width: 120px;
 
         }
 
@@ -66,7 +70,7 @@
 
         .cid {
 
-            width: 175px;
+            width: 100px;
             margin: 5px;
             margin-left: -8px;
 
@@ -158,6 +162,11 @@
             border-radius: 4px;
 
         }
+
+        .auto-size {
+            width: 180px;
+            min-width: 170px;
+        }
     </style>
 
 
@@ -240,35 +249,36 @@
 
             <form class="info">
                 <h2>REMETENTE</h2>
-                Nome: <input type="text" id="campoOrigem" required class="nome" required
-                    onkeyup="this.value = this.value.toUpperCase();">
+                Nome: <input type="text" id="campoOrigem" required class="nome auto-size" required
+                    onkeyup="ajustarTamanhoInput(this);">
                 <label for="cpf" class="cpf">CPF:</label>
                 <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
                 <br>
                 CEP: <input type="text" id="cepRemetente"
                     onblur="searchAddressByCEP('cepRemetente', 'enderecoRemetente', 'bairroRemetente', 'cidadeRemetente');"><br>
-                Ende: <input type="text" class="end" id="enderecoRemetente"
-                    onkeyup="this.value = this.value.toUpperCase();">
-                Bairro: <input type="text" id="bairroRemetente" onkeyup="this.value = this.value.toUpperCase();"><br>
-                Cidade: <input type="text" class="cid" id="cidadeRemetente"
-                    onkeyup="this.value = this.value.toUpperCase();">
+                Ende: <input type="text" class="end auto-size" id="enderecoRemetente"
+                    onkeyup="ajustarTamanhoInput(this);">
+                Bairro: <input type="text" id="bairroRemetente" class="auto-size"
+                    onkeyup="ajustarTamanhoInput(this);"><br>
+                Cidade: <input type="text" class="cid" id="cidadeRemetente" required
+                    onkeyup="ajustarTamanhoInput(this);">
                 Tel: <input type="tel" class="tel" oninput="formatarTelefone(this)" maxlength="14"><br>
 
                 <br>
                 <br>
                 <h2>DESTINATÁRIO</h2>
 
-                Nome: <input type="text" required class="nome" onkeyup="this.value = this.value.toUpperCase();">
+                Nome: <input type="text" required class="nome" required onkeyup="ajustarTamanhoInput(this);">
                 <label for="cpf" class="cpf">CPF:</label>
                 <input type="text" id="cpfDestinatario" onkeyup="formatCPF('cpfDestinatario');">
                 <br>
                 CEP: <input type="text" id="cepDestinatario"
                     onblur="searchAddressByCEP('cepDestinatario', 'enderecoDestinatario', 'bairroDestinatario', 'cidadeDestinatario');"><br>
-                Ende: <input type="text" class="end" id="enderecoDestinatario"
-                    onkeyup="this.value = this.value.toUpperCase();">
-                Bairro: <input type="text" id="bairroDestinatario" onkeyup="this.value = this.value.toUpperCase();"><br>
-                Cidade: <input type="text" class="cid" id="cidadeDestinatario"
-                    onkeyup="this.value = this.value.toUpperCase();">
+                Ende: <input type="text" class="end" id="enderecoDestinatario" required
+                    onkeyup="ajustarTamanhoInput(this);">
+                Bairro: <input type="text" id="bairroDestinatario" required onkeyup="ajustarTamanhoInput(this);"><br>
+                Cidade: <input type="text" class="cid" id="cidadeDestinatario" required
+                    onkeyup="ajustarTamanhoInput(this);">
                 Tel: <input type="tel" class="tel" oninput="formatarTelefone(this)" maxlength="14"><br>
 
                 <br>
@@ -423,6 +433,18 @@
                 alert('Impressão bloqueada!');
             }
         });
+    </script>
+
+    <script>
+
+
+        function ajustarTamanhoInput(elemento) {
+            elemento.style.width = "auto";
+            elemento.style.width = (elemento.scrollWidth + 5) + "px";
+
+            elemento.value = elemento.value.toUpperCase();
+        }
+
     </script>
 
 
