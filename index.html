@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html style="width: 21cm; height: 29.7cm;">
+<html style="width: 21cm; height: 29.7cm;" >
 
 
 
@@ -79,7 +79,7 @@
 
         .tel {
 
-            width: 100px;
+            width: 110px;
             margin: 5px;
 
         }
@@ -160,7 +160,6 @@
 
             border: 2px solid;
             border-radius: 4px;
-
         }
 
         .auto-size {
@@ -185,7 +184,7 @@
             alt="" width="400">
 
 
-        <meta charset="UTF-8">
+        <meta- charset="UTF-8">
 
         <P><b>Declaração de Natureza e Valor de Conteúdo<br>
                 (para transportes de encomendas não comerciáveis)</b></P>
@@ -216,30 +215,32 @@
 
         <form>
             <input style="text-align: center; width: 15%;" type="Vol" name="VOLUMES" value="VOLUMES" readonly
-                id="volumes">
+                id="volumes" placeholder="vol">
             <input style="text-align: center; width: 15%;" type="PesoKG" name="PESO" value="PESO Kg" readonly>
             <input style="text-align: center; width: 15%;" type="Valor" name="VALOR" value="VALOR R$" readonly>
             <input style="text-align: center; width: 15%;" type="Descrição" name="DISCRIMINAÇÃO" value="DISCRIMINAÇÃO"
-                readonly>
+                readonly >
             <input style="text-align: center; width: 15%;" type="CUBAGEM" name="CUBAGEM" value="MEDIDAS VOL" readonly>
             <br>
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
+                <input style="text-align: center; width: 15%;" type="number" class="dados">
+                <input style="text-align: center; width: 15%;" type="number" class="dados">
+                <input style="text-align: center; width: 15%;" type="number" class="dados">
+                <input style="text-align: center; width: 15%;" type="text"
+                    onkeyup="this.value = this.value.toUpperCase();">
+                <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
+                    style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
+                    style="text-align: center; width: 4%;" type="text" placeholder="C">
+                <br>
+
+            <input style="text-align: center; width: 15%;" type="number" >
+            <input style="text-align: center; width: 15%;" type="number" >
+            <input style="text-align: center; width: 15%;" type="number" >
             <input style="text-align: center; width: 15%;" type="text" onkeyup="this.value = this.value.toUpperCase();">
             <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
                 style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
                 style="text-align: center; width: 4%;" type="text" placeholder="C">
 
-            <br>
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="text" onkeyup="this.value = this.value.toUpperCase();">
-            <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
-                style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
-                style="text-align: center; width: 4%;" type="text" placeholder="C">
-
+            <p id="mensagem" style="color: red;"></p>
 
             <br>
         </form>
@@ -250,7 +251,7 @@
             <form class="info">
                 <h2>REMETENTE</h2>
                 Nome: <input type="text" id="campoOrigem" required class="nome auto-size" required
-                    onkeyup="ajustarTamanhoInput(this);">
+                    onkeyup="ajustarTamanhoInput(this);" >
                 <label for="cpf" class="cpf">CPF:</label>
                 <input type="text" id="cpfRemetente" onkeyup="formatCPF('cpfRemetente');">
                 <br>
@@ -398,24 +399,29 @@
     </script>
 
     <script>
+        function validarFormulario() {
+            const numero1 = document.getElementById("numero1").value;
+            const numero2 = document.getElementById("numero2").value;
+            const numero3 = document.getElementById("numero3").value;
+            const descricao = document.getElementById("descricao").value;
+
+            if (numero1 === "" || numero2 === "" || numero3 === "" || descricao === "" || largura === "" || altura === "" || comprimento === "") {
+                document.getElementById("mensagem").textContent = "Preencha todos os campos!";
+                document.getElementById("mensagem").scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+            } else {
+                document.getElementById("mensagem").textContent = "";
+                imprimir();
+            }
+        }
+
         function imprimir() {
-            var camposOrigem = document.getElementsByClassName('nome');
-            var camposDestinatario = document.getElementsByClassName('nome');
+            var camposOrigem = document.getElementsByClassName('dados');
             var camposVazios = false;
 
             for (var i = 0; i < camposOrigem.length; i++) {
                 if (camposOrigem[i].value === '') {
                     camposVazios = true;
                     break;
-                }
-            }
-
-            if (!camposVazios) {
-                for (var i = 0; i < camposDestinatario.length; i++) {
-                    if (camposDestinatario[i].value === '') {
-                        camposVazios = true;
-                        break;
-                    }
                 }
             }
 
@@ -445,6 +451,21 @@
             elemento.value = elemento.value.toUpperCase();
         }
 
+
+
+
+    </script>
+
+    <script>
+        function formatarTelefone(input) {
+            var numeroTelefone = input.value.replace(/\D/g, '');
+            if (numeroTelefone.length >= 10) {
+                var telefoneFormatado = '(' + numeroTelefone.substr(0, 2) + ')' +
+                    numeroTelefone.substr(2, 5) + '-' +
+                    numeroTelefone.substr(7);
+                input.value = telefoneFormatado;
+            }
+        }
     </script>
 
 
