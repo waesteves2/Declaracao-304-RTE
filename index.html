@@ -130,7 +130,7 @@
 
             margin-left: 30px;
 
-            margin-top: -80px;
+            margin-top: -90px;
 
 
 
@@ -139,7 +139,7 @@
         button {
 
             margin-left: auto;
-            color:rgb(0, 162, 255);
+            color: rgb(0, 162, 255);
             margin-top: 70px;
 
         }
@@ -173,12 +173,13 @@
 
             width: 115px;
             text-align: center;
-            margin-top:0px;
+            margin-top: 0px;
             border: 3px solid red;
-            
-            
+
+
         }
-         .input-container {
+
+        .input-container {
             text-align: center;
             color: red;
             font-size: 15px;
@@ -190,13 +191,55 @@
         }
 
         input {
-            margin-bottom: 2px; /* Ajuste conforme necessário */
+            margin-bottom: 2px;
+            /* Ajuste conforme necessário */
         }
 
-     
+        #alerta {
+            padding: 10px;
+            /* Adiciona algum espaçamento interno para melhor visualização */
+        }
+
+        .borda-vermelha {
+            border: 7px solid red;
+            /* Adiciona uma borda vermelha */
+        }
+
+        .container {
+            max-width: 800px;
+            /* ou o valor desejado */
+            margin: 0 auto;
+            /* centraliza horizontalmente */
+        }
+
+        body {
+            font-family: monospace;
+            text-align: left;
+        }
+
+        form {}
+
+        .info {
+            text-align: left;
+        }
+
+        h1,
+        h2,
+        h5 {
+            text-align: center;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        #text {
+
+            text-align: center;
+        }
     </style>
 
-    
+
 
 
     <head lang="PT-br" style="text-align: justify;">
@@ -210,35 +253,48 @@
         </script>
 
         <title>DECLARAÇÃO RTE</title>
-        <img src="./rte.png"
-            alt="" width="400">
+        <img src="./rte.png" alt="" width="400">
 
 
         <meta- charset="UTF-8">
 
-            <P><b>Declaração de Natureza e Valor de Conteúdo<br>
-                    (para transportes de encomendas não comerciáveis)</b></P>
-
-            Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo relacionados, por mim
-            entregues
-            como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal. Neles não
-            são
-            conduzidas nem correspondências a constituir monopólio postal da União, nem mercadorias destinadas a
-            comercializações, sujeitas a tributos municipais, estaduais ou federais, nem drogas, objetos ou produtos
-            perigosos
-            relacionados na NORMA BRASILEIRA NBR-7502, cujo teor é do meu conhecimento, ou outros que oferecem risco à
-            saúde
-            ou
-            à segurança das pessoas que no veículo são transportadas, ou mesmo de terceiros que sejam obrigados a
-            manipula-los.
-            Responsabilizo-me, integralmente, por quaisquer ônus ou prejuízos que de seu transporte possam decorrer,
-            inclusive
-            em caso de apreensão e aplicação de multas. Declaro, ainda, isenta a RODONAVES, do ressarcimento, que possa
-            ocorrer
-            da mercadoria por não estar embalada adequadamente.
+            <div class="container">
+                <!-- Todo o seu conteúdo aqui -->
 
 
+                <P id="text"><b>Declaração de Natureza e Valor de Conteúdo<br>
+                        (para transportes de encomendas não comerciáveis)</b></P>
+
+                <p id="alerta">Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo
+                    relacionados, por mim
+                    entregues
+                    como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal.
+                    Neles não
+                    são
+                    conduzidas nem correspondências a constituir monopólio postal da União, nem mercadorias destinadas a
+                    comercializações, sujeitas a tributos municipais, estaduais ou federais, nem drogas, objetos ou
+                    produtos
+                    perigosos
+                    relacionados na NORMA BRASILEIRA NBR-7502, cujo teor é do meu conhecimento, ou outros que oferecem
+                    risco à
+                    saúde
+                    ou
+                    à segurança das pessoas que no veículo são transportadas, ou mesmo de terceiros que sejam obrigados
+                    a
+                    manipula-los.
+                    Responsabilizo-me, integralmente, por quaisquer ônus ou prejuízos que de seu transporte possam
+                    decorrer,
+                    inclusive
+                    em caso de apreensão e aplicação de multas. Declaro, ainda, isenta a RODONAVES, do ressarcimento,
+                    que possa
+                    ocorrer
+                    da mercadoria por não estar embalada adequadamente.
+                </p>
+
+            </div>
     </head>
+
+
     <hr>
 
     <body style="font-family: monospace;">
@@ -256,7 +312,7 @@
             <br>
             <input style="text-align: center; width: 15%;" type="number" class="dados">
             <input style="text-align: center; width: 15%;" type="number" class="dados">
-            <input style="text-align: center; width: 15%;" type="number" class="dados">
+            <input style="text-align: center; width: 15%;" type="number" class="dados" id="valorDeclarado" onblur="verificarValor()">
             <input style="text-align: center; width: 15%;" type="text" onkeyup="this.value = this.value.toUpperCase();">
             <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
                 style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
@@ -265,38 +321,59 @@
 
             <input style="text-align: center; width: 15%;" type="number">
             <input style="text-align: center; width: 15%;" type="number">
-            <input style="text-align: center; width: 15%;" type="number">
+            <input style="text-align: center; width: 15%;" type="number" >
             <input style="text-align: center; width: 15%;" type="text" onkeyup="this.value = this.value.toUpperCase();">
             <input style="text-align: center; width: 4%;" type="text" placeholder="L"><input
                 style="text-align: center; width: 4.95%;" type="text" placeholder="A"><input
                 style="text-align: center; width: 4%;" type="text" placeholder="C"><br>
-                <form id="myForm">
-                    <div class="input-container">
-                        <label for="pares">Qtd de Pares:</label>
-                        <input id="pares" type="number" placeholder="Qtd de Pares" min="0" max="100"  oninput="verificarQuantidade(this)" required>
-                    </div>
-                </form>
-                <script>
-                    function verificarQuantidade(input) {
-                      if (input.value > 100) {
-                        alert("Não é permitido transportar mais de 100 pares por declaração.");
-                        input.value = ""; // Limpa o campo
-                      }
-                    }
-                  </script>
-<script>
-    window.onbeforeprint = function() {
-        var quantidadePares = document.getElementById('pares').value;
+            <form id="myForm">
+                <div class="input-container">
+                    <label for="pares">Qtd de Pares:</label>
+                    <input id="pares" type="number" placeholder="Qtd de Pares" min="0" max="100"
+                        oninput="verificarQuantidade(this)" required>
+                </div>
+            </form>
 
-        if (quantidadePares.trim() === '') {
-            alert('Por favor, preencha a quantidade de pares antes de imprimir.');
-            return false; // Cancela o evento de impressão
-        }
-    };
-</script>
-            <p id="mensagem" style="color: red;"></p>
+        </form>
 
-            <br>
+        <script>
+            function verificarValor() {
+                var valorDeclarado = document.getElementById('valorDeclarado').value;
+    
+                valorDeclarado = parseFloat(valorDeclarado);
+    
+                if (valorDeclarado > 2500) {
+                    alert('Para Declaração o Valor Máximo é de 2500 R$');
+                    document.getElementById('valorDeclarado').value = '';
+                }
+            }
+        </script>
+        <script>
+            function verificarQuantidade(input) {
+                var quantidadePares = input.value;
+                var alertaElement = document.getElementById("alerta");
+
+                if (quantidadePares > 100) {
+                    alert("Não é permitido transportar mais de 100 pares por declaração.");
+                    alertaElement.classList.add("borda-vermelha");
+                } else {
+                    alertaElement.classList.remove("borda-vermelha");
+                }
+            }
+        </script>
+        <script>
+            window.onbeforeprint = function () {
+                var quantidadePares = document.getElementById('pares').value;
+
+                if (quantidadePares.trim() === '') {
+                    alert('Por favor, preencha a quantidade de pares antes de imprimir.');
+                    return false; // Cancela o evento de impressão
+                }
+            };
+        </script>
+        <p id="mensagem" style="color: red;"></p>
+
+        <br>
         </form>
 
         <br>
@@ -414,7 +491,7 @@
     <button type="button" onclick="imprimir()">
         <img src="./impressora.png" alt="Ícone de Impressora" width="50"> Imprimir
     </button>
-    
+
 
     <script>
         var origem = document.getElementById("campoOrigem");
