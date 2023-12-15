@@ -348,19 +348,7 @@
                 }
             }
         </script>
-        <script>
-            function verificarQuantidade(input) {
-                var quantidadePares = input.value;
-                var alertaElement = document.getElementById("alerta");
-
-                if (quantidadePares > 100) {
-                    alert("Não é permitido transportar mais de 100 pares por declaração.");
-                    alertaElement.classList.add("borda-vermelha");
-                } else {
-                    alertaElement.classList.remove("borda-vermelha");
-                }
-            }
-        </script>
+       
         <script>
             window.onbeforeprint = function () {
                 var quantidadePares = document.getElementById('pares').value;
