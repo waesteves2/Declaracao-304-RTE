@@ -349,16 +349,7 @@
             }
         </script>
        
-        <script>
-            window.onbeforeprint = function () {
-                var quantidadePares = document.getElementById('pares').value;
-
-                if (quantidadePares.trim() === '') {
-                    alert('Por favor, preencha a quantidade de pares antes de imprimir.');
-                    return false; // Cancela o evento de impressão
-                }
-            };
-        </script>
+       
         <p id="mensagem" style="color: red;"></p>
 
         <br>
