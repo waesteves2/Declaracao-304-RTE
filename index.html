@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-...." crossorigin="anonymous" />
+     <link rel="stylesheet" href="style.css">
+     <link rel="shortcut icon"
+    href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
+   
+
+
+    
+    <title>Declaração de Conteúdo</title>
+</head>
+
+<body>
+
+    <div id="form-container">
+
+        <img id="logo" src="./rte.png" alt="Logo da Empresa">
+
+        <script>
+            function converterParaMaiusculas(elementId) {
+                const inputElement = document.getElementById(elementId);
+                inputElement.value = inputElement.value.toUpperCase();
+            }
+
+            function formatarCPF(cpf) {
+                cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+                cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+                return cpf;
+            }
+
+            function formatarTelefone(telefone) {
+                telefone = telefone.replace(/\D/g, ''); // Remove caracteres não numéricos
+                telefone = telefone.replace(/(\d{2})(\d{4,5})(\d{4})/, '($1) $2-$3');
+                return telefone;
+            }
+        </script>
+
+        <div id="remetente-section">
+            <!-- Formulário do Remetente -->
+            <h3>Dados do Remetente</h3>
+            <form id="remetente-form">
+                <label for="remetente-nome">Nome completo:</label>
+                <input type="text" id="remetente-nome" oninput="converterParaMaiusculas('remetente-nome')" required>
+
+                <label for="remetente-cpf">CPF:</label>
+                <input type="text" id="remetente-cpf"
+                    oninput="this.value = formatarCPF(this.value); converterParaMaiusculas('remetente-cpf')" required>
+
+                <label for="remetente-telefone">Telefone:</label>
+                <input type="tel" id="remetente-telefone" oninput="this.value = formatarTelefone(this.value)" required>
+
+                <label for="remetente-cep">CEP:</label>
+                <input type="text" id="remetente-cep" oninput="buscarCep('remetente-cep', 'remetente')" required>
+
+                <label for="remetente-numero">Nº:</label>
+                <input type="text" id="remetente-numero" required>
+
+                <label for="remetente-endereco">Endereço:</label>
+                <input type="text" id="remetente-endereco" oninput="converterParaMaiusculas('remetente-endereco')"
+                    required>
+
+                <label for="remetente-bairro">Bairro:</label>
+                <input type="text" id="remetente-bairro" oninput="converterParaMaiusculas('remetente-bairro')" required>
+
+                <label for="remetente-cidade-uf">Cidade/UF:</label>
+                <input type="text" id="remetente-cidade-uf" oninput="converterParaMaiusculas('remetente-cidade-uf')"
+                    required>
+                <button type="button" onclick="proximoPasso('destinatario-section')"
+                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
+                    Próxima Etapa <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></button></button>
+            </form>
+        </div>
+
+        <div id="destinatario-section" style="display: none;">
+            <!-- Formulário do Destinatário -->
+            <h3>Dados do Destinatário</h3>
+            <form id="destinatario-form">
+                <label for="destinatario-nome">Nome completo:</label>
+                <input type="text" id="destinatario-nome" oninput="converterParaMaiusculas('destinatario-nome')"
+                    required>
+
+                <label for="destinatario-cpf">CPF:</label>
+                <input type="text" id="destinatario-cpf"
+                    oninput="this.value = formatarCPF(this.value); converterParaMaiusculas('destinatario-cpf')"
+                    required>
+
+                <label for="destinatario-telefone">Telefone:</label>
+                <input type="tel" id="destinatario-telefone" oninput="this.value = formatarTelefone(this.value)"
+                    required>
+
+                <label for="destinatario-cep">CEP:</label>
+                <input type="text" id="destinatario-cep" oninput="buscarCep('destinatario-cep', 'destinatario')"
+                    required>
+
+                <label for="destinatario-numero">Nº:</label>
+                <input type="text" id="destinatario-numero" required>
+
+                <label for="destinatario-endereco">Endereço:</label>
+                <input type="text" id="destinatario-endereco" oninput="converterParaMaiusculas('destinatario-endereco')"
+                    required>
+
+                <label for="destinatario-bairro">Bairro:</label>
+                <input type="text" id="destinatario-bairro" oninput="converterParaMaiusculas('destinatario-bairro')"
+                    required>
+
+                <label for="destinatario-cidade-uf">Cidade/UF:</label>
+                <input type="text" id="destinatario-cidade-uf"
+                    oninput="converterParaMaiusculas('destinatario-cidade-uf')" required>
+
+                <button type="button" onclick="voltarPasso('remetente-section')"
+                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
+                    <i class="fas fa-arrow-left" style="margin-right: 5px;"></i> Voltar
+                </button><br>
+                <button type="button" onclick="proximoPasso('mercadoria-section')"
+                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
+                    Próxima Etapa <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                </button>
+            </form>
+        </div>
+
+
+        <div id="mercadoria-section" style="display: none;">
+            <!-- Formulário da Mercadoria -->
+            <h3>Informações da Mercadoria</h3>
+            <form id="mercadoria-form">
+                <label for="mercadoria-volumes">Volumes:</label>
+                <input type="number" id="mercadoria-volumes" required>
+
+                <label for="mercadoria-valor">Valor R$:</label>
+                <input type="text" id="mercadoria-valor" required>
+
+                <label for="mercadoria-peso">Peso Kg:</label>
+                <input type="text" id="mercadoria-peso" required>
+
+                <label for="mercadoria-descricao">Descrição da Mercadoria:</label>
+                <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos">
+
+                <label for="mercadoria-qtd-pares">Qtd de pares:</label>
+                <input type="number" id="mercadoria-qtd-pares" required>
+
+                <button id="btnGerarDeclaracao" onclick="gerarDeclaracao()"
+                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
+                    <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> Gerar Declaração em PDF
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+
+    <script>
+        function buscarCep(cepId, tipo) {
+            const cepInput = document.getElementById(cepId);
+            const cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+            if (cep.length !== 8) {
+                return;
+            }
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => preencherEndereco(data, tipo))
+                .catch(error => console.error('Erro ao buscar CEP:', error));
+        }
+
+        function preencherEndereco(data, tipo) {
+            const prefixo = tipo === 'remetente' ? 'remetente' : 'destinatario';
+
+            document.getElementById(`${prefixo}-endereco`).value = data.logradouro.toUpperCase();
+            document.getElementById(`${prefixo}-cidade-uf`).value = `${data.localidade.toUpperCase()}/${data.uf.toUpperCase()}`;
+            document.getElementById(`${prefixo}-bairro`).value = data.bairro.toUpperCase();
+        }
+
+
+    </script>
+</body>
+
+</html>
