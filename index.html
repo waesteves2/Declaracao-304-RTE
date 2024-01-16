@@ -134,7 +134,7 @@
                 <input type="number" id="mercadoria-volumes" required>
 
                 <label for="mercadoria-valor">Valor R$:</label>
-                <input type="number" id="mercadoria-valor" required>
+                <input type="number" id="mercadoria-valor" required oninput="validarValor(this)">
                 <label for="mercadoria-peso">Peso Kg:</label>
                 <input type="number" id="mercadoria-peso" required>
 
@@ -153,17 +153,16 @@
     </div>
 
     <script src="./script.js"></script>
-
-    <script>
-            document.getElementById("mercadoria-form").addEventListener("submit", function(event) {
-                var valorInput = document.getElementById("mercadoria-valor").value;
+ <script>
+            function validarValor(input) {
+                var valorInput = input.value;
                 var valorNumerico = parseFloat(valorInput.replace(",", "."));
 
                 if (isNaN(valorNumerico) || valorNumerico > 2500) {
                     alert("O valor deve ser até R$ 2500,00");
-                    event.preventDefault(); // Impede o envio do formulário
+                    input.value = ""; // Limpa o campo
                 }
-            });
+            }
         </script>
 
     <script>
