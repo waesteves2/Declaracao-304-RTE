@@ -50,17 +50,17 @@
                 <input type="text" id="remetente-nome" oninput="converterParaMaiusculas('remetente-nome')" required>
 
                 <label for="remetente-cpf">CPF:</label>
-                <input type="text" id="remetente-cpf"
+                <input type="number" id="remetente-cpf"
                     oninput="this.value = formatarCPF(this.value); converterParaMaiusculas('remetente-cpf')" required>
 
                 <label for="remetente-telefone">Telefone:</label>
                 <input type="tel" id="remetente-telefone" oninput="this.value = formatarTelefone(this.value)" required>
 
                 <label for="remetente-cep">CEP:</label>
-                <input type="text" id="remetente-cep" oninput="buscarCep('remetente-cep', 'remetente')" required>
+                <input type="number" id="remetente-cep" oninput="buscarCep('remetente-cep', 'remetente')" required>
 
                 <label for="remetente-numero">Nº:</label>
-                <input type="text" id="remetente-numero" required>
+                <input type="number" id="remetente-numero" required>
 
                 <label for="remetente-endereco">Endereço:</label>
                 <input type="text" id="remetente-endereco" oninput="converterParaMaiusculas('remetente-endereco')"
@@ -87,7 +87,7 @@
                     required>
 
                 <label for="destinatario-cpf">CPF:</label>
-                <input type="text" id="destinatario-cpf"
+                <input type="number" id="destinatario-cpf"
                     oninput="this.value = formatarCPF(this.value); converterParaMaiusculas('destinatario-cpf')"
                     required>
 
@@ -96,11 +96,11 @@
                     required>
 
                 <label for="destinatario-cep">CEP:</label>
-                <input type="text" id="destinatario-cep" oninput="buscarCep('destinatario-cep', 'destinatario')"
+                <input type="number" id="destinatario-cep" oninput="buscarCep('destinatario-cep', 'destinatario')"
                     required>
 
                 <label for="destinatario-numero">Nº:</label>
-                <input type="text" id="destinatario-numero" required>
+                <input type="number" id="destinatario-numero" required>
 
                 <label for="destinatario-endereco">Endereço:</label>
                 <input type="text" id="destinatario-endereco" oninput="converterParaMaiusculas('destinatario-endereco')"
@@ -134,9 +134,9 @@
                 <input type="number" id="mercadoria-volumes" required>
 
                 <label for="mercadoria-valor">Valor R$:</label>
-                <input type="number" id="mercadoria-valor" required max="2500">
+                <input type="number" id="mercadoria-valor" required>
                 <label for="mercadoria-peso">Peso Kg:</label>
-                <input type="text" id="mercadoria-peso" required>
+                <input type="number" id="mercadoria-peso" required>
 
                 <label for="mercadoria-descricao">Descrição da Mercadoria:</label>
                 <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos">
@@ -153,6 +153,18 @@
     </div>
 
     <script src="./script.js"></script>
+
+    <script>
+            document.getElementById("mercadoria-form").addEventListener("submit", function(event) {
+                var valorInput = document.getElementById("mercadoria-valor").value;
+                var valorNumerico = parseFloat(valorInput.replace(",", "."));
+
+                if (isNaN(valorNumerico) || valorNumerico > 2500) {
+                    alert("O valor deve ser até R$ 2500,00");
+                    event.preventDefault(); // Impede o envio do formulário
+                }
+            });
+        </script>
 
     <script>
         function buscarCep(cepId, tipo) {
