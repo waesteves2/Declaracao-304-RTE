@@ -94,7 +94,7 @@ function gerarDeclaracao() {
   // Concatenar todas as informações em uma única string
 
   // Adicionar uma logo e um texto ao cabeçalho
-  const cabecalho = '<div style="border: 1px solid #000; padding: 10px;"><img src="rte.png" alt="Logo da Empresa" style="width: 65%; height: 60px;"></div>';
+  const cabecalho = '<div style="border: 1px solid #000; padding: 10px;"><img src="rte.png" alt="Logo da Empresa" style="width: 60%; height: 60px;"></div>';
   const textoCabecalho = `
     <div style="border: 1px solid #000; padding: 10px; text-align: justify;">
       <h3 style="text-align: center; margin-bottom: 10px;">Declaração de Conteúdo</h3>
