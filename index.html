@@ -10,7 +10,8 @@
      <link rel="stylesheet" href="style.css">
      <link rel="shortcut icon"
     href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
-   
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
 
 
     
@@ -57,10 +58,10 @@
                 <input type="tel" id="remetente-telefone" oninput="this.value = formatarTelefone(this.value)" required>
 
                 <label for="remetente-cep">CEP:</label>
-                <input type="number" id="remetente-cep" oninput="buscarCep('remetente-cep', 'remetente')" required>
+                <input type="text" id="remetente-cep" oninput="buscarCep('remetente-cep', 'remetente')" required>
 
                 <label for="remetente-numero">Nº:</label>
-                <input type="number" id="remetente-numero" required>
+                <input type="text" id="remetente-numero" required>
 
                 <label for="remetente-endereco">Endereço:</label>
                 <input type="text" id="remetente-endereco" oninput="converterParaMaiusculas('remetente-endereco')"
@@ -72,6 +73,7 @@
                 <label for="remetente-cidade-uf">Cidade/UF:</label>
                 <input type="text" id="remetente-cidade-uf" oninput="converterParaMaiusculas('remetente-cidade-uf')"
                     required>
+                    
                 <button type="button" onclick="proximoPasso('destinatario-section')"
                     style="font-family: 'Arial, sans-serif; font-size: 16px;">
                     Próxima Etapa <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></button></button>
@@ -96,11 +98,11 @@
                     required>
 
                 <label for="destinatario-cep">CEP:</label>
-                <input type="number" id="destinatario-cep" oninput="buscarCep('destinatario-cep', 'destinatario')"
+                <input type="text" id="destinatario-cep" oninput="buscarCep('destinatario-cep', 'destinatario')"
                     required>
 
                 <label for="destinatario-numero">Nº:</label>
-                <input type="number" id="destinatario-numero" required>
+                <input type="text" id="destinatario-numero" required>
 
                 <label for="destinatario-endereco">Endereço:</label>
                 <input type="text" id="destinatario-endereco" oninput="converterParaMaiusculas('destinatario-endereco')"
@@ -134,12 +136,13 @@
                 <input type="number" id="mercadoria-volumes" required>
 
                 <label for="mercadoria-valor">Valor R$:</label>
-                <input type="number" id="mercadoria-valor" required oninput="validarValor(this)">
+                <input type="text" id="mercadoria-valor" required>
+
                 <label for="mercadoria-peso">Peso Kg:</label>
-                <input type="number" id="mercadoria-peso" required>
+                <input type="text" id="mercadoria-peso" required>
 
                 <label for="mercadoria-descricao">Descrição da Mercadoria:</label>
-                <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos">
+                <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos" oninput="converterParaMaiusculas('mercadoria-descricao')">
 
                 <label for="mercadoria-qtd-pares">Qtd de pares:</label>
                 <input type="number" id="mercadoria-qtd-pares" required>
@@ -153,17 +156,6 @@
     </div>
 
     <script src="./script.js"></script>
- <script>
-            function validarValor(input) {
-                var valorInput = input.value;
-                var valorNumerico = parseFloat(valorInput.replace(",", "."));
-
-                if (isNaN(valorNumerico) || valorNumerico > 2500) {
-                    alert("O valor deve ser até R$ 2500,00");
-                    input.value = ""; // Limpa o campo
-                }
-            }
-        </script>
 
     <script>
         function buscarCep(cepId, tipo) {
@@ -190,6 +182,11 @@
 
 
     </script>
+
+
+    
+</script>
+
 </body>
 
 </html>

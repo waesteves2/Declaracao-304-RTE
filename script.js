@@ -96,7 +96,8 @@ function gerarDeclaracao() {
   // Adicionar uma logo e um texto ao cabeçalho
   const cabecalho = '<div style="border: 1px solid #000; padding: 10px;"><img src="rte.png" alt="Logo da Empresa" style="width: 60%; height: 60px;"></div>';
   const textoCabecalho = `
-    <div style="border: 1px solid #000; padding: 10px; text-align: justify;">
+    <div style="border: 1px solid #000; padding: 10px; text-align: justify; font-size: 15;
+    ">
       <h3 style="text-align: center; margin-bottom: 10px;">Declaração de Conteúdo</h3>
       Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo
       relacionados, por mim entregues como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal.
