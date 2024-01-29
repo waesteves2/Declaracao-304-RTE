@@ -59,7 +59,6 @@ function gerarDeclaracao() {
     return;
   }
 
-  // Coletar dados do remetente
   const remetenteNome = document.getElementById('remetente-nome').value;
   const remetenteCPF = document.getElementById('remetente-cpf').value;
   const remetenteTelefone = document.getElementById('remetente-telefone').value;
@@ -69,7 +68,6 @@ function gerarDeclaracao() {
   const remetenteBairro = document.getElementById('remetente-bairro').value;
   const remetenteCidadeUF = document.getElementById('remetente-cidade-uf').value;
 
-  // Coletar dados do destinatário
   const destinatarioNome = document.getElementById('destinatario-nome').value;
   const destinatarioCPF = document.getElementById('destinatario-cpf').value;
   const destinatarioTelefone = document.getElementById('destinatario-telefone').value;
@@ -79,21 +77,22 @@ function gerarDeclaracao() {
   const destinatarioBairro = document.getElementById('destinatario-bairro').value;
   const destinatarioCidadeUF = document.getElementById('destinatario-cidade-uf').value;
 
-  // Verificar se os dados da mercadoria foram preenchidos
-  const mercadoriaVolumes = document.getElementById('mercadoria-volumes').value;
-  const mercadoriaValor = document.getElementById('mercadoria-valor').value;
-  const mercadoriaPeso = document.getElementById('mercadoria-peso').value;
-  const mercadoriaDescricao = document.getElementById('mercadoria-descricao').value;
-  const mercadoriaQtdPares = document.getElementById('mercadoria-qtd-pares').value;
+const mercadoriaVolumes = document.getElementById('mercadoria-volumes').value;
+const mercadoriaValor = document.getElementById('mercadoria-valor').value;
+const mercadoriaPeso = document.getElementById('mercadoria-peso').value;
+const mercadoriaDescricao = document.getElementById('mercadoria-descricao').value;
+const mercadoriaQtdPares = document.getElementById('mercadoria-qtd-pares').value;
+const mercadoriaComprimento = document.getElementById('mercadoria-comprimento').value;
+const mercadoriaLargura = document.getElementById('mercadoria-largura').value;
+const mercadoriaAltura = document.getElementById('mercadoria-altura').value;
 
-  if (!remetenteNumero || !remetenteEndereco || !remetenteCidadeUF || !remetenteCPF || !destinatarioNumero || !destinatarioEndereco || !destinatarioCidadeUF || !destinatarioCPF || !mercadoriaVolumes || !mercadoriaValor || !mercadoriaPeso || !mercadoriaDescricao || !mercadoriaQtdPares) {
+if (!remetenteNumero || !remetenteEndereco || !remetenteCidadeUF || !remetenteCPF || !destinatarioNumero || !destinatarioEndereco || !destinatarioCidadeUF || !destinatarioCPF || !mercadoriaVolumes || !mercadoriaValor || !mercadoriaPeso || !mercadoriaComprimento || !mercadoriaLargura || !mercadoriaAltura || !mercadoriaDescricao || !mercadoriaQtdPares) {
     alert('Preencha todos os campos obrigatórios antes de gerar a declaração.');
     return;
-  }
+}
 
-  // Concatenar todas as informações em uma única string
 
-  // Adicionar uma logo e um texto ao cabeçalho
+
   const cabecalho = '<div style="border: 1px solid #000; padding: 10px;"><img src="rte.png" alt="Logo da Empresa" style="width: 60%; height: 60px;"></div>';
   const textoCabecalho = `
     <div style="border: 1px solid #000; padding: 10px; text-align: justify; font-size: 15;
@@ -112,7 +111,6 @@ function gerarDeclaracao() {
     </div>
   `;
 
-  // Adicionar bordas aos itens do remetente
   const informacoesRemetente = `
     <div style="border: 1px solid #000; padding: 10px; font-family: 'Arial', sans-serif; font-size: 14px;">
       <h3 style="text-align: center; margin-bottom: 10px;"><b>Remetente</b></h3>
@@ -127,7 +125,6 @@ function gerarDeclaracao() {
     </div>
   `;
 
-  // Restante do código para o destinatário permanece o mesmo...
 
   const informacoesDestinatario = `
   <div style="border: 1px solid #000; padding: 10px; font-family: 'Arial', sans-serif; font-size: 14px;">
@@ -155,9 +152,13 @@ const informacoesMercadoria = `
     <td><b>Peso:</b><br> ${mercadoriaPeso}</td>
     <td><b>Descrição:</b><br> ${mercadoriaDescricao}</td>
     <td><b>Qtd de pares:</b><br> ${mercadoriaQtdPares}</td>
+    <td><b>Com:</b><br> ${mercadoriaComprimento}</td>
+    <td><b>Lar:</b><br> ${mercadoriaLargura}</td>
+    <td><b>Alt:</b><br> ${mercadoriaAltura}</td>
   </tr>
 </table>
 </div>
+
 
   <div style="border: 1px solid #000; padding: 10px;">
     <h4>PAGADOR DE FRETE REMETENTE</h4>

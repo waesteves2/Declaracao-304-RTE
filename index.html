@@ -44,7 +44,6 @@
         </script>
 
         <div id="remetente-section">
-            <!-- Formulário do Remetente -->
             <h3>Dados do Remetente</h3>
             <form id="remetente-form">
                 <label for="remetente-nome">Nome completo:</label>
@@ -81,7 +80,6 @@
         </div>
 
         <div id="destinatario-section" style="display: none;">
-            <!-- Formulário do Destinatário -->
             <h3>Dados do Destinatário</h3>
             <form id="destinatario-form">
                 <label for="destinatario-nome">Nome completo:</label>
@@ -127,33 +125,40 @@
             </form>
         </div>
 
-
         <div id="mercadoria-section" style="display: none;">
-            <!-- Formulário da Mercadoria -->
             <h3>Informações da Mercadoria</h3>
             <form id="mercadoria-form">
                 <label for="mercadoria-volumes">Volumes:</label>
                 <input type="number" id="mercadoria-volumes" required>
-
+        
                 <label for="mercadoria-valor">Valor R$:</label>
                 <input type="number" id="mercadoria-valor" required oninput="validarValor(this)">
 
                 <label for="mercadoria-peso">Peso Kg:</label>
                 <input type="text" id="mercadoria-peso" required>
-
+               
                 <label for="mercadoria-descricao">Descrição da Mercadoria:</label>
                 <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos" oninput="converterParaMaiusculas('mercadoria-descricao')">
-
+        
                 <label for="mercadoria-qtd-pares">Qtd de pares:</label>
                 <input type="number" id="mercadoria-qtd-pares" required>
 
+                <label for="mercadoria-comprimento">Comprimento (cm):</label>
+                <input type="number" id="mercadoria-comprimento" required>
+        
+                <label for="mercadoria-largura">Largura (cm):</label>
+                <input type="number" id="mercadoria-largura" required>
+        
+                <label for="mercadoria-altura">Altura (cm):</label>
+                <input type="number" id="mercadoria-altura" required>
+        
                 <button id="btnGerarDeclaracao" onclick="gerarDeclaracao()"
                     style="font-family: 'Arial, sans-serif; font-size: 16px;">
                     <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> Gerar Declaração em PDF
                 </button>
             </form>
         </div>
-    </div>
+        
 
     <script src="./script.js"></script>
 
@@ -184,20 +189,39 @@
     </script>
 
 
+<script>
+    function handleEnterKey(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const focusables = document.querySelectorAll('input, button');
+            const index = Array.from(focusables).indexOf(document.activeElement);
+
+            if (index > -1 && index < focusables.length - 1) {
+                focusables[index + 1].focus();
+            }
+        }
+    }
+
+    document.querySelectorAll('input, button').forEach(element => {
+        element.addEventListener('keydown', handleEnterKey);
+    });
+</script>
+
+
     
 </script>
 
-     <script>
-            function validarValor(input) {
-                var valorInput = input.value;
-                var valorNumerico = parseFloat(valorInput.replace(",", "."));
+<script>
+    function validarValor(input) {
+        var valorInput = input.value;
+        var valorNumerico = parseFloat(valorInput.replace(",", "."));
 
-                if (isNaN(valorNumerico) || valorNumerico > 2500) {
-                    alert("O valor deve ser até R$ 2500,00");
-                    input.value = ""; // Limpa o campo
-                }
-            }
-        </script>
+        if (isNaN(valorNumerico) || valorNumerico > 2500) {
+            alert("O valor deve ser até R$ 2500,00");
+            input.value = ""; // Limpa o campo
+        }
+    }
+</script>
 
 </body>
 
