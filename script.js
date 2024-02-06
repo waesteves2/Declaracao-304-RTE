@@ -94,7 +94,7 @@ function gerarDeclaracao() {
   }
 
   // Verificar se o CPF está na lista para decidir se o frete será cobrado
-  const cpfsComFreteCobrado = ['342.539.108-90', '381.444.968-17', '260.464.398-76','341.159.118-83', '413.798.418-28', '227.209.948-39', '318.853.828-63', '319.881.098-17', '135.936.138-32'];
+  const cpfsComFreteCobrado = ['342.539.108-90', '381.444.968-17', '315.851.618-70', '410.129.968-40', '248.955.688-65', '432.339.048-35', '215.443.638-26', '260.464.398-76','341.159.118-83', '413.798.418-28', '227.209.948-39', '318.853.828-63', '319.881.098-17', '135.936.138-32'];
   const cobrarFrete = cpfsComFreteCobrado.includes(remetenteCPF);
   const freteValor = cobrarFrete ? calcularFrete(mercadoriaVolumes, mercadoriaPeso) : 0;
 
