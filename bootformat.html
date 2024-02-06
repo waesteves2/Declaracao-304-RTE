@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatador de Cidades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #cityInput {
+            width: 80%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        #formattedCities {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .city-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Formatador de Cidades</h2>
+
+    <label for="cityInput">Cole a lista de cidades aqui:</label><br>
+    <textarea id="cityInput"></textarea><br>
+    <button onclick="formatCities()">Formatar Cidades</button>
+
+    <h3>Cidades Formatadas:</h3>
+    <ul id="formattedCities"></ul>
+
+    <script>
+        function formatCities() {
+            var inputTextArea = document.getElementById("cityInput");
+            var formattedList = document.getElementById("formattedCities");
+
+            // Limpar a lista antes de adicionar as cidades formatadas
+            formattedList.innerHTML = '';
+
+            // Dividir o conteúdo do textarea em linhas
+            var cities = inputTextArea.value.split('\n');
+
+            // Adicionar cidades formatadas à lista
+            cities.forEach(function(city) {
+                if (city.trim() !== '') {
+                    var formattedCity = "'" + city.trim() + "',";
+                    var listItem = document.createElement("li");
+                    listItem.className = "city-item";
+                    listItem.textContent = formattedCity;
+                    formattedList.appendChild(listItem);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

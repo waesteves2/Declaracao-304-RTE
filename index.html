@@ -176,6 +176,7 @@
                 .then(data => preencherEndereco(data, tipo))
                 .catch(error => console.error('Erro ao buscar CEP:', error));
         }
+        
 
         function preencherEndereco(data, tipo) {
             const prefixo = tipo === 'remetente' ? 'remetente' : 'destinatario';
@@ -218,7 +219,7 @@
 
         if (isNaN(valorNumerico) || valorNumerico > 2500) {
             alert("O valor deve ser até R$ 2500,00");
-            input.value = ""; // Limpa o campo
+            input.value = ""; 
         }
     }
 </script>
