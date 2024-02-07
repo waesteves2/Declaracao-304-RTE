@@ -94,7 +94,7 @@ function gerarDeclaracao() {
   }
 
   // Verificar se o CPF está na lista para decidir se o frete será cobrado
-  const cpfsComFreteCobrado = ['342.539.108-90', '381.444.968-17', '315.851.618-70', '051.700.338-42', '411.312.438-89', '410.129.968-40', '248.955.688-65', '432.339.048-35', '215.443.638-26', '260.464.398-76','341.159.118-83', '413.798.418-28', '227.209.948-39', '318.853.828-63', '319.881.098-17', '135.936.138-32'];
+  const cpfsComFreteCobrado = ['342.539.108-90', '381.444.968-17', '315.851.618-70','358.779.298-44', '374.588.528-79', '351.286.478-38', '051.700.338-42', '411.312.438-89', '410.129.968-40', '248.955.688-65', '432.339.048-35', '215.443.638-26', '260.464.398-76','341.159.118-83', '413.798.418-28', '227.209.948-39', '318.853.828-63', '319.881.098-17', '135.936.138-32'];
   const cobrarFrete = cpfsComFreteCobrado.includes(remetenteCPF);
   const freteValor = cobrarFrete ? calcularFrete(mercadoriaVolumes, mercadoriaPeso) : 0;
 
@@ -118,7 +118,7 @@ function gerarDeclaracao() {
 
   // Montar as informações do remetente
   const informacoesRemetente = `
-    <div style="border: 1px solid #000; padding: 10px; font-family: 'Arial', sans-serif; font-size: 14px;">
+    <div style="border: 1px solid #000; padding: 6px; font-family: 'Arial', sans-serif; font-size: 14px;">
       <h3 style="text-align: center; margin-bottom: 10px;"><b>Remetente</b></h3>
       <span style="margin-bottom: 5px; display: block;">Nome: ${remetenteNome}</span>
       <span>CPF: ${remetenteCPF}</span>
@@ -133,7 +133,7 @@ function gerarDeclaracao() {
 
   // Montar as informações do destinatário
   const informacoesDestinatario = `
-    <div style="border: 1px solid #000; padding: 10px; font-family: 'Arial', sans-serif; font-size: 14px;">
+    <div style="border: 1px solid #000; padding: 6px; font-family: 'Arial', sans-serif; font-size: 14px;">
       <h3 style="text-align: center; margin-bottom: 10px;"><b>Destinatário</b></h3>
       <span style="margin-bottom: 5px; display: block;">Nome: ${destinatarioNome}</span>
       <span>CPF: ${destinatarioCPF}</span>
