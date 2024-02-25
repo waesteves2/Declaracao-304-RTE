@@ -7,14 +7,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-...." crossorigin="anonymous" />
-     <link rel="stylesheet" href="style.css">
-     <link rel="shortcut icon"
-    href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon"
+        href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
 
 
-    
+
     <title>Declaração de Conteúdo</title>
 </head>
 
@@ -72,7 +73,7 @@
                 <label for="remetente-cidade-uf">Cidade/UF:</label>
                 <input type="text" id="remetente-cidade-uf" oninput="converterParaMaiusculas('remetente-cidade-uf')"
                     required>
-                    
+
                 <button type="button" onclick="proximoPasso('destinatario-section')"
                     style="font-family: 'Arial, sans-serif; font-size: 16px;">
                     Próxima Etapa <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></button></button>
@@ -114,14 +115,15 @@
                 <input type="text" id="destinatario-cidade-uf"
                     oninput="converterParaMaiusculas('destinatario-cidade-uf')" required>
 
+                <button type="button" onclick="proximoPasso('mercadoria-section')"
+                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
+                    Próxima Etapa <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                </button><br>
                 <button type="button" onclick="voltarPasso('remetente-section')"
                     style="font-family: 'Arial, sans-serif; font-size: 16px;">
                     <i class="fas fa-arrow-left" style="margin-right: 5px;"></i> Voltar
                 </button><br>
-                <button type="button" onclick="proximoPasso('mercadoria-section')"
-                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
-                    Próxima Etapa <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
-                </button>
+
             </form>
         </div>
 
@@ -130,99 +132,101 @@
             <form id="mercadoria-form">
                 <label for="mercadoria-volumes">Volumes:</label>
                 <input type="number" id="mercadoria-volumes" required>
-        
+
                 <label for="mercadoria-valor">Valor R$:</label>
                 <input type="number" id="mercadoria-valor" required oninput="validarValor(this)">
 
                 <label for="mercadoria-peso">Peso Kg:</label>
                 <input type="text" id="mercadoria-peso" required>
-               
+
                 <label for="mercadoria-descricao">Descrição da Mercadoria:</label>
-                <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos" oninput="converterParaMaiusculas('mercadoria-descricao')">
-        
+                <input type="text" id="mercadoria-descricao" required placeholder="Ex Sapatos/Roupas/Brinquedos"
+                    oninput="converterParaMaiusculas('mercadoria-descricao')">
+
                 <label for="mercadoria-qtd-pares">Qtd de pares:</label>
                 <input type="number" id="mercadoria-qtd-pares" required>
 
                 <label for="mercadoria-comprimento">Comprimento (cm):</label>
                 <input type="number" id="mercadoria-comprimento" required>
-        
+
                 <label for="mercadoria-largura">Largura (cm):</label>
                 <input type="number" id="mercadoria-largura" required>
-        
+
                 <label for="mercadoria-altura">Altura (cm):</label>
                 <input type="number" id="mercadoria-altura" required>
-        
+
                 <button id="btnGerarDeclaracao" onclick="gerarDeclaracao()"
                     style="font-family: 'Arial, sans-serif; font-size: 16px;">
                     <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> Gerar Declaração em PDF
                 </button>
+
             </form>
         </div>
-        
 
-    <script src="./script.js"></script>
 
-    <script>
-        function buscarCep(cepId, tipo) {
-            const cepInput = document.getElementById(cepId);
-            const cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        <script src="./script.js"></script>
 
-            if (cep.length !== 8) {
-                return;
+        <script>
+            function buscarCep(cepId, tipo) {
+                const cepInput = document.getElementById(cepId);
+                const cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+                if (cep.length !== 8) {
+                    return;
+                }
+
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => preencherEndereco(data, tipo))
+                    .catch(error => console.error('Erro ao buscar CEP:', error));
             }
 
-            fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                .then(response => response.json())
-                .then(data => preencherEndereco(data, tipo))
-                .catch(error => console.error('Erro ao buscar CEP:', error));
-        }
-        
 
-        function preencherEndereco(data, tipo) {
-            const prefixo = tipo === 'remetente' ? 'remetente' : 'destinatario';
+            function preencherEndereco(data, tipo) {
+                const prefixo = tipo === 'remetente' ? 'remetente' : 'destinatario';
 
-            document.getElementById(`${prefixo}-endereco`).value = data.logradouro.toUpperCase();
-            document.getElementById(`${prefixo}-cidade-uf`).value = `${data.localidade.toUpperCase()}/${data.uf.toUpperCase()}`;
-            document.getElementById(`${prefixo}-bairro`).value = data.bairro.toUpperCase();
-        }
-
-
-    </script>
-
-
-<script>
-    function handleEnterKey(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            const focusables = document.querySelectorAll('input, button');
-            const index = Array.from(focusables).indexOf(document.activeElement);
-
-            if (index > -1 && index < focusables.length - 1) {
-                focusables[index + 1].focus();
+                document.getElementById(`${prefixo}-endereco`).value = data.logradouro.toUpperCase();
+                document.getElementById(`${prefixo}-cidade-uf`).value = `${data.localidade.toUpperCase()}/${data.uf.toUpperCase()}`;
+                document.getElementById(`${prefixo}-bairro`).value = data.bairro.toUpperCase();
             }
-        }
-    }
-
-    document.querySelectorAll('input, button').forEach(element => {
-        element.addEventListener('keydown', handleEnterKey);
-    });
-</script>
 
 
-    
-</script>
+        </script>
 
-<script>
-    function validarValor(input) {
-        var valorInput = input.value;
-        var valorNumerico = parseFloat(valorInput.replace(",", "."));
 
-        if (isNaN(valorNumerico) || valorNumerico > 2500) {
-            alert("O valor deve ser até R$ 2500,00");
-            input.value = ""; 
-        }
-    }
-</script>
+        <script>
+            function handleEnterKey(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const focusables = document.querySelectorAll('input, button');
+                    const index = Array.from(focusables).indexOf(document.activeElement);
+
+                    if (index > -1 && index < focusables.length - 1) {
+                        focusables[index + 1].focus();
+                    }
+                }
+            }
+
+            document.querySelectorAll('input, button').forEach(element => {
+                element.addEventListener('keydown', handleEnterKey);
+            });
+        </script>
+
+
+
+        </script>
+
+        <script>
+            function validarValor(input) {
+                var valorInput = input.value;
+                var valorNumerico = parseFloat(valorInput.replace(",", "."));
+
+                if (isNaN(valorNumerico) || valorNumerico > 2500) {
+                    alert("O valor deve ser até R$ 2500,00");
+                    input.value = "";
+                }
+            }
+        </script>
 
 </body>
 
