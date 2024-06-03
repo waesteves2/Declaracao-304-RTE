@@ -13,9 +13,6 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
-
-
-
     <title>Declaração de Conteúdo</title>
 </head>
 
@@ -155,16 +152,16 @@
                 <label for="mercadoria-altura">Altura (cm):</label>
                 <input type="number" id="mercadoria-altura" required>
 
-                <button id="btnGerarDeclaracao" onclick="gerarDeclaracao()"
-                    style="font-family: 'Arial, sans-serif; font-size: 16px;">
-                    <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> Gerar Declaração em PDF
+                <button onclick="gerarDocumento()">
+                    <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> Gerar Declaração em PDF e Etiqueta
                 </button>
+
 
             </form>
         </div>
 
 
-        <script src="./script.js"></script>
+        <script src="./declara.js"></script>
 
         <script>
             function buscarCep(cepId, tipo) {
@@ -181,7 +178,6 @@
                     .catch(error => console.error('Erro ao buscar CEP:', error));
             }
 
-
             function preencherEndereco(data, tipo) {
                 const prefixo = tipo === 'remetente' ? 'remetente' : 'destinatario';
 
@@ -190,11 +186,6 @@
                 document.getElementById(`${prefixo}-bairro`).value = data.bairro.toUpperCase();
             }
 
-
-        </script>
-
-
-        <script>
             function handleEnterKey(event) {
                 if (event.key === 'Enter') {
                     event.preventDefault();
@@ -210,13 +201,7 @@
             document.querySelectorAll('input, button').forEach(element => {
                 element.addEventListener('keydown', handleEnterKey);
             });
-        </script>
 
-
-
-        </script>
-
-        <script>
             function validarValor(input) {
                 var valorInput = input.value;
                 var valorNumerico = parseFloat(valorInput.replace(",", "."));
@@ -226,7 +211,12 @@
                     input.value = "";
                 }
             }
+
+           
         </script>
+
+        
+
 
 </body>
 
