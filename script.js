@@ -180,17 +180,10 @@ que possa ocorrer da mercadoria por não estar embalada adequadamente.
 </div>
 `;
 
-    const informacoes = informacoesRemetente + informacoesDestinatario + informacoesMercadoria;
+    // Montar a declaração e etiquetas em uma única janela
+const informacoes = informacoesRemetente + informacoesDestinatario + informacoesMercadoria;
 
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write('<html><head><title>Declaração e Etiqueta</title></head><body>');
-    printWindow.document.write(cabecalho + textoCabecalho + informacoes);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-
-    printWindow.print();
-
-    // Obter o total de volumes
+// Obter o total de volumes
 const totalVolumes = parseInt(mercadoriaVolumes);
 
 // Montar as etiquetas para cada volume
@@ -200,39 +193,38 @@ for (let i = 1; i <= totalVolumes; i++) {
     <div style="border: 1px solid #000; padding: 10px; margin:10px">
     <div><img src="rte.png" alt="Logo da Empresa" style="width: 50%; height: 50px;"></div> 
     <span>DECLARAÇÃO</span>  
-    <H4><strong>Remetente:</strong> ${remetenteNome}</H4>
-    <H4><strong>Destinatário:</strong> ${destinatarioNome}</H4>
-    <span style="margin-bottom: 5px; display: block;">Endereço: ${destinatarioEndereco}</span>    <span style="margin-bottom: 5px; display: block;">Nº: ${destinatarioNumero}</span>
-    <span stule="margin-bottom: 5px; display: block;"> Bairro: ${destinatarioBairro}</span>
+    <h4><strong>Remetente:</strong> ${remetenteNome}</h4>
+    <h4><strong>Destinatário:</strong> ${destinatarioNome}</h4>
+    <span style="margin-bottom: 5px; display: block;">Endereço: ${destinatarioEndereco}</span>
+    <span style="margin-bottom: 5px; display: block;">Nº: ${destinatarioNumero}</span>
+    <span style="margin-bottom: 5px; display: block;">Bairro: ${destinatarioBairro}</span>
     <span style="margin-bottom: 5px; display: block;">Cidade/UF: ${destinatarioCidadeUF}</span>
     <h4><strong>Volume:</strong> ${i}/${totalVolumes}</h4>
     </div>
   `;
 }
 
-// Abrir uma janela para impressão
+// Abrir uma nova janela para impressão
+const printWindow = window.open('', '_blank');
+
+// Escrever o conteúdo da declaração na janela
+printWindow.document.write('<html><head><title>Declaração e Etiquetas</title></head><body>');
+printWindow.document.write(cabecalho + textoCabecalho + informacoes);
+printWindow.document.write('</body></html>');
+printWindow.document.close();
+
+// Imprimir a declaração
+printWindow.print();
+
+// Após imprimir a declaração, adicionar as etiquetas
 printWindow.document.write('<html><head><title>Etiquetas de Envio</title></head><body>');
-
-// Escrever as etiquetas na janela
 printWindow.document.write(etiquetas);
-
-// Fechar o documento HTML
 printWindow.document.write('</body></html>');
 printWindow.document.close();
 
 // Imprimir as etiquetas
 printWindow.print();
-
-    gerarDeclaracao();
-    gerarEtiqueta();
 }
-
-
-
-
-
-
-
 
 
 function cidadeElegivel(cidade, grupo) {
