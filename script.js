@@ -211,7 +211,7 @@ const printWindow = window.open('', '_blank');
 printWindow.document.write('<html><head><title>Declaração e Etiquetas</title></head><body>');
 printWindow.document.write(cabecalho + textoCabecalho + informacoes);
 printWindow.document.write('</body></html>');
-printWindow.document.close();
+
 
 // Imprimir a declaração
 printWindow.print();
