@@ -101,22 +101,34 @@ function gerarDocumento() {
     const freteValor = cobrarFrete ? calcularFrete(mercadoriaVolumes, mercadoriaPeso) : 0;
 
     // Montar o cabeçalho e texto da declaração
-    const cabecalho = '<div style="border: 1px solid #000; padding: 10px;"><img src="rte.png" alt="Logo da Empresa" style="width: 60%; height: 60px;"></div>';
+    const cabecalho = '<div style="border: 1px solid #000; padding: 10px;"><img src="rte.png" alt="Logo da Empresa" style="width: 55%; height: 50px;"></div>';
+
+    const dataAtual = new Date();
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
+    const ano = dataAtual.getFullYear();
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
     const textoCabecalho = `
-<div style="border: 1px solid #000; padding: 10px; text-align: justify; font-size: small;">
-<h3 style="text-align: center; margin-bottom: 10px;">Declaração de Conteúdo</h3>
-Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo
-relacionados, por mim entregues como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal.
-Neles não são conduzidas nem correspondências a constituir monopólio postal da União, nem mercadorias destinadas a
-comercializações, sujeitas a tributos municipais, estaduais ou federais, nem drogas, objetos ou produtos perigosos
-relacionados na NORMA BRASILEIRA NBR-7502, cujo teor é do meu conhecimento, ou outros que oferecem risco à
-saúde ou à segurança das pessoas que no veículo são transportadas, ou mesmo de terceiros que sejam obrigados a
-manipula-los.
-Responsabilizo-me, integralmente, por quaisquer ônus ou prejuízos que de seu transporte possam decorrer,
-inclusive em caso de apreensão e aplicação de multas. Declaro, ainda, isenta a RODONAVES, do ressarcimento,
-que possa ocorrer da mercadoria por não estar embalada adequadamente.
-</div>
-`;
+    <div style="border: 1px solid #000; padding: 10px; text-align: justify; font-size: small;">
+    <h3 style="text-align: center; margin-bottom: 10px;">Declaração de Conteúdo</h3>
+    Declaro para os devidos fins de direito e sob as penas da lei, que os volumes abaixo
+    relacionados, por mim entregues como encomendas, à RODONAVES TRANSPORTES E ENCOMENDAS LTDA., contém apenas objetos de uso pessoal.
+    Neles não são conduzidas nem correspondências a constituir monopólio postal da União, nem mercadorias destinadas a
+    comercializações, sujeitas a tributos municipais, estaduais ou federais, nem drogas, objetos ou produtos perigosos
+    relacionados na NORMA BRASILEIRA NBR-7502, cujo teor é do meu conhecimento, ou outros que oferecem risco à
+    saúde ou à segurança das pessoas que no veículo são transportadas, ou mesmo de terceiros que sejam obrigados a
+    manipula-los.
+    Responsabilizo-me, integralmente, por quaisquer ônus ou prejuízos que de seu transporte possam decorrer,
+    inclusive em caso de apreensão e aplicação de multas. Declaro, ainda, isenta a RODONAVES, do ressarcimento,
+    que possa ocorrer da mercadoria por não estar embalada adequadamente.
+    <br><br>
+    Data: ${dataFormatada}
+    </div>
+    `;
+
+    console.log(cabecalho + textoCabecalho);
+
 
     // Montar as informações do remetente
     const informacoesRemetente = `
@@ -180,16 +192,18 @@ que possa ocorrer da mercadoria por não estar embalada adequadamente.
 </div>
 `;
 
+
+
     // Montar a declaração e etiquetas em uma única janela
-const informacoes = informacoesRemetente + informacoesDestinatario + informacoesMercadoria;
+    const informacoes = informacoesRemetente + informacoesDestinatario + informacoesMercadoria;
 
-// Obter o total de volumes
-const totalVolumes = parseInt(mercadoriaVolumes);
+    // Obter o total de volumes
+    const totalVolumes = parseInt(mercadoriaVolumes);
 
-// Montar as etiquetas para cada volume
-let etiquetas = '';
-for (let i = 1; i <= totalVolumes; i++) {
-  etiquetas += `
+    // Montar as etiquetas para cada volume
+    let etiquetas = '';
+    for (let i = 1; i <= totalVolumes; i++) {
+        etiquetas += `
     <div style="border: 1px solid #000; padding: 10px; margin:10px">
     <div><img src="rte.png" alt="Logo da Empresa" style="width: 50%; height: 50px;"></div> 
     <span>DECLARAÇÃO</span>  
@@ -202,28 +216,27 @@ for (let i = 1; i <= totalVolumes; i++) {
     <h4><strong>Volume:</strong> ${i}/${totalVolumes}</h4>
     </div>
   `;
-}
+    }
 
-// Abrir uma nova janela para impressão
-const printWindow = window.open('', '_blank');
+    // Abrir uma nova janela para impressão
+    const printWindow = window.open('', '_blank');
 
-// Escrever o conteúdo da declaração na janela
-printWindow.document.write('<html><head><title>Declaração e Etiquetas</title></head><body>');
-printWindow.document.write(cabecalho + textoCabecalho + informacoes);
-printWindow.document.write('</body></html>');
+    // Escrever o conteúdo da declaração na janela
+    printWindow.document.write('<html><head><title>Declaração e Etiquetas</title></head><body>');
+    printWindow.document.write(cabecalho + textoCabecalho + informacoes);
+    printWindow.document.write('</body></html>');
 
+    // Imprimir a declaração
+    printWindow.print();
 
-// Imprimir a declaração
-printWindow.print();
+    // Após imprimir a declaração, adicionar as etiquetas
+    printWindow.document.write('<html><head><title>Etiquetas de Envio</title></head><body>');
+    printWindow.document.write(etiquetas);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
 
-// Após imprimir a declaração, adicionar as etiquetas
-printWindow.document.write('<html><head><title>Etiquetas de Envio</title></head><body>');
-printWindow.document.write(etiquetas);
-printWindow.document.write('</body></html>');
-printWindow.document.close();
-
-// Imprimir as etiquetas
-printWindow.print();
+    // Imprimir as etiquetas
+    printWindow.print();
 }
 
 
