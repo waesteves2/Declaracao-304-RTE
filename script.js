@@ -183,7 +183,6 @@ function gerarDocumento() {
 
 <div style="border: 1px solid #000; padding: 10px;">
 <h4>PAGADOR DE FRETE REMETENTE</h4>
-<h4 style="text-align: center; margin-bottom: 5px;"> PIX: 44.914.992/0001-38</h4>
 <div style="text-align: center;">
   ${cobrarFrete ? `<p>Valor do Frete: R$ ${freteValor.toFixed(2)}</p>` : `<p></p>`}
 
